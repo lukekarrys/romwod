@@ -1,0 +1,57 @@
+{
+  "name": "@lukekarrys/romwod",
+  "description": "Get information about a ROMWOD workout.",
+  "version": "0.0.3",
+  "author": "Luke Karrys <luke@lukekarrys.com>",
+  "bin": {
+    "romwod": "./lib/cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lukekarrys/romwod/issues"
+  },
+  "dependencies": {
+    "dashify": "^0.2.2",
+    "env-paths": "^1.0.0",
+    "jsdom": "^9.11.0",
+    "lodash.attempt": "^4.2.0",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.17.1",
+    "outdent": "^0.3.0",
+    "word-wrap": "^1.2.1",
+    "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "git-validate": "^2.2.2",
+    "nock": "^9.0.9",
+    "nyc": "^10.1.2",
+    "standard": "^9.0.0",
+    "tape": "^4.6.3"
+  },
+  "homepage": "https://github.com/lukekarrys/romwod#readme",
+  "keywords": [
+    "romwod"
+  ],
+  "license": "ISC",
+  "main": "./lib/index.js",
+  "nyc": {
+    "exclude": [
+      "lib/cli.js"
+    ]
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test",
+    "test:live"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lukekarrys/romwod.git"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "nyc --check-coverage --statements 100 --lines 100 --functions 100 --branches 100 tape 'test/!(live).js'",
+    "test:live": "tape test/live.js",
+    "validate": "npm ls"
+  }
+}
