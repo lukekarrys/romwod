@@ -1,7 +1,7 @@
 {
   "name": "@lukekarrys/romwod",
   "description": "Get information about a ROMWOD workout.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "bin": {
     "romwod": "./lib/cli.js"
