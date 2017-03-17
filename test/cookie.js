@@ -20,7 +20,7 @@ const WORKOUT = 'going the distance'
 const WORKOUT_ID = 'going-the-distance'
 const COOKIE_PATH = path.resolve(__dirname, 'fixtures', 'cookie')
 const COOKIE = fs.readFileSync(COOKIE_PATH).toString()
-const COOKIE_VALUES = COOKIE.split(';').map((c) => c.replace(/^.*=(.*)/, '$1'))
+const [COOKIE_SESSION, COOKIE_ID] = COOKIE.split(';').map((c) => c.replace(/^.*=(.*)/, '$1').trim())
 const UNAUTHED_COOKIE = '_romwod_session=123456;_session_id=123'
 const MISSING_KEYS_COOKIE = 'testhuh=what'
 const LOGGED_IN = fs.readFileSync(path.resolve(__dirname, 'fixtures', 'going-the-distance.html')).toString()
@@ -73,7 +73,7 @@ test('it works with a cookie path', (t) => {
 
 test('works with cookie obj', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: { _romwod_session: COOKIE_VALUES[0], _session_id: COOKIE_VALUES[1] } })
+  romwod({ name: WORKOUT, cookie: { _romwod_session: COOKIE_SESSION, _session_id: COOKIE_ID } })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -84,7 +84,7 @@ test('works with cookie obj', (t) => {
 
 test('works with cookie obj with generic keys', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: { session: COOKIE_VALUES[0], id: COOKIE_VALUES[1] } })
+  romwod({ name: WORKOUT, cookie: { session: COOKIE_SESSION, id: COOKIE_ID } })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -95,18 +95,7 @@ test('works with cookie obj with generic keys', (t) => {
 
 test('works with cookie array', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES })
-    .then((data) => {
-      t.deepEqual(data, SUCCESS_EXPECTED)
-      nockOk(t)
-      t.end()
-    })
-    .catch(notCalled(t))
-})
-
-test('works with cookie array reversed', (t) => {
-  mock()
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES.slice(0).reverse() })
+  romwod({ name: WORKOUT, cookie: [COOKIE_ID, COOKIE_SESSION] })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -117,7 +106,7 @@ test('works with cookie array reversed', (t) => {
 
 test('it works with just cookie values joined by ;', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES.join(';') })
+  romwod({ name: WORKOUT, cookie: COOKIE_ID + ';' + COOKIE_SESSION })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -128,7 +117,7 @@ test('it works with just cookie values joined by ;', (t) => {
 
 test('it works with just cookie values joined by newline', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES.join('\n') })
+  romwod({ name: WORKOUT, cookie: COOKIE_ID + '\n' + COOKIE_SESSION })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -139,7 +128,7 @@ test('it works with just cookie values joined by newline', (t) => {
 
 test('it works with just cookie values joined by space', (t) => {
   mock()
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES.join(' ') })
+  romwod({ name: WORKOUT, cookie: COOKIE_ID + ' ' + COOKIE_SESSION })
     .then((data) => {
       t.deepEqual(data, SUCCESS_EXPECTED)
       nockOk(t)
@@ -169,7 +158,7 @@ test('fails with a bad type null for a cookie', (t) => {
 })
 
 test('fails with only one value for a a cookie', (t) => {
-  romwod({ name: WORKOUT, cookie: COOKIE_VALUES[0] })
+  romwod({ name: WORKOUT, cookie: COOKIE_SESSION })
     .then(notCalled(t))
     .catch((err) => {
       t.equal(err.message, 'cookie keys _session_id,_romwod_session are required')
