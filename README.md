@@ -1,6 +1,8 @@
 romwod
 --------------
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/romwod.svg)](https://greenkeeper.io/)
+
 Get some information about a ROMWOD workout.
 
 [![NPM](https://nodei.co/npm/@lukekarrys/romwod.png)](https://nodei.co/npm/@lukekarrys/romwod/)
