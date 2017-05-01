@@ -18,13 +18,13 @@
     "moment": "^2.17.1",
     "outdent": "^0.3.0",
     "word-wrap": "^1.2.1",
-    "yargs": "^6.6.0"
+    "yargs": "^7.1.0"
   },
   "devDependencies": {
     "git-validate": "^2.2.2",
     "nock": "^9.0.9",
     "nyc": "^10.1.2",
-    "standard": "^9.0.0",
+    "standard": "^10.0.2",
     "tape": "^4.6.3"
   },
   "homepage": "https://github.com/lukekarrys/romwod#readme",
@@ -41,8 +41,7 @@
   "pre-commit": [
     "lint",
     "validate",
-    "test",
-    "test:live"
+    "test"
   ],
   "repository": {
     "type": "git",
