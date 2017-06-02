@@ -5,9 +5,12 @@ const fs = require('fs')
 const romwod = require('../lib/index')
 
 /* istanbul ignore next */
-const notCalled = (t) => (err) => {
-  t.ok(false, err instanceof Error ? err.message : 'should not be called')
-  t.end()
+const notCalled = (t) => {
+  /* istanbul ignore next */
+  return (err) => {
+    t.ok(false, err instanceof Error ? err.message : 'should not be called')
+    t.end()
+  }
 }
 
 const nockOk = (t) => {

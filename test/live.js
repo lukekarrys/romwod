@@ -2,11 +2,14 @@ const test = require('tape')
 const romwod = require('../lib/index')
 const authPath = require('../lib/auth-path')
 
-const notCalled = (t) => (err) => {
-  t.ok(false, err instanceof Error ? err.message : 'should not be called')
-  t.end()
+/* istanbul ignore next */
+const notCalled = (t) => {
+  /* istanbul ignore next */
+  return (err) => {
+    t.ok(false, err instanceof Error ? err.message : 'should not be called')
+    t.end()
+  }
 }
-
 const cookie = authPath
 const keys = ['slug', 'id', 'title', 'description', 'duration', 'poses', 'exercises', 'target_areas']
 
