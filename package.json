@@ -39,9 +39,7 @@
     ]
   },
   "pre-commit": [
-    "lint",
-    "validate",
-    "test"
+    "wait"
   ],
   "repository": {
     "type": "git",
@@ -51,6 +49,7 @@
     "lint": "standard",
     "test": "nyc --check-coverage --statements 100 --lines 100 --functions 100 --branches 100 tape 'test/!(live).js'",
     "test:live": "tape test/live.js",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "wait": "sleep 30; echo 0;"
   }
 }
