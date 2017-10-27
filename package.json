@@ -16,7 +16,7 @@
     "lodash.attempt": "^4.2.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.17.1",
-    "outdent": "^0.3.0",
+    "outdent": "^0.4.1",
     "word-wrap": "^1.2.1",
     "yargs": "^10.0.3"
   },
