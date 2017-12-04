@@ -10,7 +10,7 @@
     "url": "https://github.com/lukekarrys/romwod/issues"
   },
   "dependencies": {
-    "dashify": "^0.2.2",
+    "dashify": "^1.0.0",
     "env-paths": "^1.0.0",
     "jsdom": "^11.0.0",
     "lodash.attempt": "^4.2.0",
