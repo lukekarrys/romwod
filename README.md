@@ -4,9 +4,6 @@ romwod
 Get some information about a ROMWOD workout.
 
 [![NPM](https://nodei.co/npm/@lukekarrys/romwod.png)](https://nodei.co/npm/@lukekarrys/romwod/)
-[![Build Status](https://travis-ci.org/lukekarrys/romwod.png?branch=master)](https://travis-ci.org/lukekarrys/romwod)
-[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/romwod.svg)](https://greenkeeper.io/)
-
 
 ## Install
 
